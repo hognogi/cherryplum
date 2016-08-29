@@ -9,7 +9,7 @@ var rename = require("gulp-rename");
 var scss = require('gulp-scss');
 
 gulp.task('browserify', function() {
-
+ 
     var bundler = browserify({
         entries: ['./client/interfaces/web/app/app.js'], // Only need initial file, browserify finds the deps
         transform: [reactify], // We want to convert JSX to normal javascript

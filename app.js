@@ -1,5 +1,8 @@
 console.log('Starting app.js... ');
 
+
+require('dotenv').config();
+
 var config = require('./config.js');
 
 

@@ -16,7 +16,7 @@ module.exports = {
 	root_path_relative_to_core : "../",
 
 	mongodb_url : process.env.CHERRYPLUM_MONGODB_DB_URL || "mongodb://localhost:27017",
-	mongodb_db_name : "blog",
+	mongodb_db_name :  process.env.CHERRYPLUM_MONGODB_DB_NAME ||  "blog2",
 
 	media_validator: {
 		max_size: 30000000, // 30 MiB
@@ -35,8 +35,8 @@ module.exports = {
 	admin_user : {
 		//username 	: process.env.CHERRYPLUM_ADMIN_USERNAME, 
 		//password	: process.env.CHERRYPLUM_ADMIN_PASSWORD,
-		name 		: "Beni Hognogi",
-		email 		: "beni@hognogi.com",
+		name 		: process.env.CHERRYPLUM_ADMIN_NAME ||  "Beni Hognogi",
+		email 		: process.env.CHERRYPLUM_ADMIN_EMAIL || "beni@hognogi.com",
 		created		: Date.now(),
 		access_keys : ["ADMIN"]
 	}
