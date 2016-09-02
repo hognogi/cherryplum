@@ -1,7 +1,40 @@
 <html>
 
 	<head>
-		<title> Index </title>
+		<title>{{=it.metaData.main_title  + (it.metaData.main_title_suffix ? " | " + it.metaData.main_title_suffix : "") }}</title>
+		<meta charset="utf-8">
+		
+		<meta name="description" content="{{=it.metaData.description}}">
+		<meta name="keywords" content="{{=it.metaData.keywords}}">
+
+		<link rel="author" href="https://twitter.com/AndreiHognogi" />
+		<meta name="author" content="Beni Hognogi">
+
+		<link rel="canonical" href="{{=it.metaData.page_url}}" />
+
+
+
+		<!-- FACEBOOK -->
+		<meta property="og:url" content="{{=it.metaData.page_url}}">
+		<meta property="og:image" content="{{=it.metaData.image_url}}">
+		<meta property="og:description" content="{{=it.metaData.description}}">
+		<meta property="og:title" content="{{=it.metaData.main_title  + (it.metaData.main_title_suffix ? " | " + it.metaData.main_title_suffix : "") }}">
+		<meta property="og:site_name" content="Beni Hognogi Blog">
+		<meta property="og:see_also" content="http://www.hognogi.com">
+
+		<!-- GOOGLE PLUS -->
+		<meta itemprop="name" content="{{=it.metaData.main_title  + (it.metaData.main_title_suffix ? " | " + it.metaData.main_title_suffix : "") }}">
+		<meta itemprop="description" content="{{=it.metaData.description}}">
+		<meta itemprop="image" content="{{=it.metaData.image_url}}">
+
+
+		<!-- TWITTER -->
+
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:url" content="{{=it.metaData.page_url}}">
+		<meta name="twitter:title" content="{{=it.metaData.main_title  + (it.metaData.main_title_suffix ? " | " + it.metaData.main_title_suffix : "") }}">
+		<meta name="twitter:description" content="{{=it.metaData.description}}">
+		<meta name="twitter:image" content="{{=it.metaData.image_url}}">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

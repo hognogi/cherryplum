@@ -10,21 +10,52 @@ module.exports = function(CORE, interface_name){
 	web_intf.view('homepage', function(data){
 
 		return web_intf.dots.react_base({
-			pageData : data
+			pageData : {
+				posts		: data.posts, 
+				media		: data.media, 
+				settings 	: {
+					homepage_tagline : data.settings.homepage_tagline,
+					homepage_subtext : data.settings.homepage_subtext
+				},
+				tags		: data.tags,
+				auth		: data.auth
+			},
+
+			metaData : {
+				main_title 			: data.settings.main_title,
+				main_title_suffix	: data.settings.homepage_meta_title_suffix,
+				description			: data.settings.homepage_meta_description,
+				keywords			: data.settings.homepage_meta_keywords,
+				page_url			: "http://www.hognogi.com",
+				image_url			: data.settings.homepage_image_url
+			}
 		});
 	});
 
 
 	web_intf.view('contact', function(data){
 
-		return web_intf.dots.react_base({});
+		return web_intf.dots.react_base({
+			pageData : {},
+			metaData : {
+				main_title : data.settings.main_title
+			}	
+		});
 
 	});
 
 
 	web_intf.view('login', function(data){
+
+
 		return web_intf.dots.react_base({
-			pageData: data
+			pageData: {
+				validation_message : data.validation_message
+			},
+
+			metaData : {
+				main_title : data.settings.main_title
+			}
 		});
 	});
 
@@ -42,6 +73,10 @@ module.exports = function(CORE, interface_name){
 			pageData : {
 				err_object: {
 					err_message : "Error 404: Page not found :("
+				},
+
+				metaData : {
+					main_title : "404 Page not found"
 				}
 			}
 		});
@@ -53,6 +88,10 @@ module.exports = function(CORE, interface_name){
 				err_object: {
 					err_message : "Error 403: Access is forbidden ;) "
 				}
+			},
+
+			metaData : {
+				main_title : "403 Access forbidden"
 			}
 		});
 	});
@@ -65,6 +104,10 @@ module.exports = function(CORE, interface_name){
 					err_message : "Error 500: Internal server error x_x. Please help me by sending me the error report:",
 					err_report : JSON.stringify(data.err_object, null, 4)
 				}
+			},
+
+			metaData : {
+				main_title : "500 Internal Server Error"
 			}
 		});
 	});

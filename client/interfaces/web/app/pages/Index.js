@@ -48,6 +48,7 @@ var Index = React.createClass({
 				<Row className="main-container">
 					<Col xs={12} >
 						<h1 className="main-title">{this.childContext.texts.home.tagline}</h1>
+						<h1 className="main-title-subtext">{this.childContext.texts.home.tagline_subtext}</h1>
 					</Col>
 
 					<Col xs={12} md={9} >

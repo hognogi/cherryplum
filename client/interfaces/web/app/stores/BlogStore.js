@@ -91,7 +91,8 @@ var BlogStore = function(){
 			tag_color_map 	: _tag_color_map,
 			texts : {
 				home : {
-					tagline : _settings.homepage_tagline
+					tagline 		: _settings.homepage_tagline,
+					tagline_subtext : _settings.homepage_subtext
 				}
 			}
 		};

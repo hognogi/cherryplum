@@ -27,20 +27,10 @@
 							<form id="submit_settings" method="post" action="/settings/" >
 
 
-								<h4>General Settings</h4>
-
-	                            <input type="text" name="main_title"  value="{{=it.settings.main_title || ''}}"  placeholder="Blog Title" />
-
-
+								<h3>General Settings</h3>
 
 								<h5 >Page size: <input type="number" name="page_size" value="{{=it.settings.page_size || 10}}" min="0" max="100"/></h5>
-	                            <h4>Homepage Settings</h4>
 
-	                            <input type="text" name="homepage_tagline" value="{{=it.settings.homepage_tagline || ''}}" placeholder="Homepage Tagline" />
-	                            <input type="text" name="homepage_subtext" value="{{=it.settings.homepage_subtext || ''}}" placeholder="Homepage subtext" />
-
-
-								<hr />
 
 								<h4>Tags:</h4>
 
@@ -59,6 +49,54 @@
 										<span data-tag-key="{{=tag}}">{{=tag}} <input type="number" min="0" max="1000" value="{{=it.tag_prio_map[tag] || 0}}" /></span>
 									{{~}}
 								</div>
+
+
+
+
+								<hr />
+								<hr />
+
+
+								
+	                            <h3>Meta Settings</h3>
+
+
+
+
+	                            <input type="text" name="main_title"  value="{{=it.settings.main_title || ''}}"  placeholder="Meta Title" />
+
+								<hr />
+								<hr />
+
+
+
+	                            <h3>Homepage Settings</h3>
+
+
+								
+	                            <input type="text" name="homepage_meta_title_suffix" value="{{=it.settings.homepage_meta_title_suffix || ''}}" placeholder="Homepage Meta Title Suffix" />
+	                            <input type="text" name="homepage_meta_description" value="{{=it.settings.homepage_meta_description || ''}}" placeholder="Homepage Meta Description" />
+ 								<input type="text" name="homepage_meta_keywords" value="{{=it.settings.homepage_meta_keywords || ''}}" placeholder="Homepage Meta Keywords" />
+
+								<input type="text" name="homepage_image_url" value="{{=it.settings.homepage_image_url || ''}}" placeholder="Homepage Meta Image" />
+
+
+
+	                            <input type="text" name="homepage_tagline" value="{{=it.settings.homepage_tagline || ''}}" placeholder="Homepage Tagline" />
+	                            <input type="text" name="homepage_subtext" value="{{=it.settings.homepage_subtext || ''}}" placeholder="Homepage subtext" />
+
+
+								<hr />
+								<hr />
+
+
+	                            <h3>Contact Settings</h3>
+
+	
+	                            <input type="text" name="contact_meta_title_suffix" value="{{=it.settings.contact_meta_title_suffix || ''}}" placeholder="Contact Meta Title Suffix" />
+
+
+
 							</form>
 
 

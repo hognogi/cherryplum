@@ -17,6 +17,12 @@ body {
       font-size: 26px;
       margin-top: 15px;
       font-weight: bold; }
+    body .main-container .main-title-subtext {
+      color: #626f7a;
+      font-family: 'Rambla', sans-serif;
+      font-size: 15px;
+      margin-top: 0px;
+      font-weight: bold; }
     body .main-container.error-report {
       padding-top: 40px; }
   body .footer {

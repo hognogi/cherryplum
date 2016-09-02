@@ -98,7 +98,17 @@ module.exports = [
 		method: 'GET',
 		path: '/login/',
 		handler : function(req, res) {
-			res.send(req.interface.render('login'));
+
+			req.model.getSettings()
+			.then(function(settings){
+
+				res.send(req.interface.render('login',{
+					settings: settings
+				}));
+			},function(err){
+				res.send( req.interface.render("500", err) );
+			});
+
 		},
 		access_violation : function(req, res){
 			res.send( req.interface.to("default").render("403") );
@@ -123,20 +133,24 @@ module.exports = [
 			.done(function(validation_result){
 
 				if(validation_result.valid){
-
 					res.cookie('jwt', req.auth.getDefaultLoginJWT(validation_result.user) , { maxAge: 2 * 24 * 60 * 60 * 1000 , httpOnly: true });
 					res.redirect('/?setinterface=admin');
 				} else {
-					res.send(req.interface.render('login',{
-						validation_message : "The login failed :("
-					}));
+					//validation failed
+					req.model.getSettings()
+					.then(function(settings){
+						res.send(req.interface.render('login',{
+							validation_message : "The login failed :(",
+							settings: settings
+						}));
+					},function(err){
+						res.send( req.interface.render("500", err) );
+					});
 				}
 
 			},function(){	
-				res.send(req.interface.render('login',{
-					validation_message : "The login failed :("
-				}));
-		
+				//validation threw error
+				res.send( req.interface.to("default").render("500", {err_object: arguments}) );
 			});
 
 		},
@@ -181,7 +195,17 @@ module.exports = [
 		method: 'GET',
 		path: '/contact/',
 		handler :  function (req, res) {
-			res.send(  req.interface.render('contact') );
+
+			req.model.getSettings()
+				.then(function(settings){ 
+					res.send(  req.interface.render('contact',{
+						settings: settings
+					}));
+				},function(){
+					res.send( req.interface.to("default").render("500", {err_object: arguments}) );
+				});
+
+
 		},
 		access_violation : function(req, res){
 			res.send( req.interface.to("default").render("403") );

@@ -78,13 +78,31 @@ module.exports = function(CORE){
 	var _updateSettings = function(req) {
 
 		return repo.edit("general", { doc_type: "settings"}, {
-			doc_type				: "settings",
-			main_title				: req.body.main_title || '',
-			homepage_tagline 		: req.body.homepage_tagline || '',
-			homepage_subtext 		: req.body.homepage_subtext || '',
-			tag_colors 				: req.body.tag_colors || '',
-			tag_prio 				: req.body.tag_prio || '',
-			page_size				: parseInt(req.body.page_size) || 10
+			doc_type					: "settings",
+
+			//general settings
+			page_size					: parseInt(req.body.page_size) || 10,
+			
+			//tags 
+			tag_colors 					: req.body.tag_colors || '',
+			tag_prio 					: req.body.tag_prio || '',
+
+			//meta settings
+			main_title					: req.body.main_title || '',
+
+			//homepage settings
+			//meta
+			homepage_meta_title_suffix 	: req.body.homepage_meta_title_suffix || '',
+			homepage_meta_description 	: req.body.homepage_meta_description || '',
+			homepage_meta_keywords		: req.body.homepage_meta_keywords,
+			homepage_image_url			: req.body.homepage_image_url,
+			//content
+			homepage_tagline 			: req.body.homepage_tagline || '',
+			homepage_subtext 			: req.body.homepage_subtext || '',
+
+			//contact settings
+			contact_meta_title_suffix	: req.body.contact_meta_title_suffix || ''
+
 		}, {
 			upsert: true
 		})
