@@ -63,7 +63,9 @@
 
 
 
-	                            <input type="text" name="main_title"  value="{{=it.settings.main_title || ''}}"  placeholder="Meta Title" />
+								<input type="text" name="main_title"  value="{{=it.settings.main_title || ''}}"  placeholder="Meta Title" />
+
+								<input type="text" name="favicon_url"  value="{{=it.settings.favicon_url || ''}}"  placeholder="Favicon Url" />
 
 								<hr />
 								<hr />
@@ -94,6 +96,19 @@
 
 	
 	                            <input type="text" name="contact_meta_title_suffix" value="{{=it.settings.contact_meta_title_suffix || ''}}" placeholder="Contact Meta Title Suffix" />
+	                            <input type="text" name="contact_meta_description" value="{{=it.settings.contact_meta_description || ''}}" placeholder="Contact Meta Description" />
+ 								<input type="text" name="contact_meta_keywords" value="{{=it.settings.contact_meta_keywords || ''}}" placeholder="Contact Meta Keywords" />
+								<input type="text" name="contact_image_url" value="{{=it.settings.contact_image_url || ''}}" placeholder="Contact Meta Image" />
+
+	                            <h3>Login Settings</h3>
+
+	
+	                            <input type="text" name="login_meta_title_suffix" value="{{=it.settings.login_meta_title_suffix || ''}}" placeholder="Login Meta Title Suffix" />
+	                            <input type="text" name="login_meta_description" value="{{=it.settings.login_meta_description || ''}}" placeholder="Login Meta Description" />
+ 								<input type="text" name="login_meta_keywords" value="{{=it.settings.login_meta_keywords || ''}}" placeholder="Login Meta Keywords" />
+								<input type="text" name="login_image_url" value="{{=it.settings.login_image_url || ''}}" placeholder="Login Meta Image" />
+
+
 
 
 

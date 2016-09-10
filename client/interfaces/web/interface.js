@@ -15,19 +15,22 @@ module.exports = function(CORE, interface_name){
 				media		: data.media, 
 				settings 	: {
 					homepage_tagline : data.settings.homepage_tagline,
-					homepage_subtext : data.settings.homepage_subtext
+					homepage_subtext : data.settings.homepage_subtext,
+					tag_colors 	: data.settings.tag_colors,
+					tag_prio 	: data.settings.tag_prio 
 				},
 				tags		: data.tags,
 				auth		: data.auth
 			},
 
 			metaData : {
-				main_title 			: data.settings.main_title,
-				main_title_suffix	: data.settings.homepage_meta_title_suffix,
-				description			: data.settings.homepage_meta_description,
-				keywords			: data.settings.homepage_meta_keywords,
-				page_url			: "http://www.hognogi.com",
-				image_url			: data.settings.homepage_image_url
+				main_title 			: data.settings.main_title || "",
+				favicon_url			: data.settings.favicon_url || "",
+				main_title_suffix	: data.settings.homepage_meta_title_suffix || "",
+				description			: data.settings.homepage_meta_description || "",
+				keywords			: data.settings.homepage_meta_keywords || "",
+				page_url			: "http://www.hognogi.com/",
+				image_url			: data.settings.homepage_image_url || ""
 			}
 		});
 	});
@@ -38,7 +41,13 @@ module.exports = function(CORE, interface_name){
 		return web_intf.dots.react_base({
 			pageData : {},
 			metaData : {
-				main_title : data.settings.main_title
+				main_title 			: data.settings.main_title || "",
+				favicon_url			: data.settings.favicon_url || "",
+				main_title_suffix 	: data.settings.contact_meta_title_suffix || "",
+				description			: data.settings.contact_meta_description || "",
+				keywords			: data.settings.contact_meta_keywords || "",
+				page_url			: "http://www.hognogi.com/contact",
+				image_url			: data.settings.contact_image_url || ""
 			}	
 		});
 
@@ -46,15 +55,19 @@ module.exports = function(CORE, interface_name){
 
 
 	web_intf.view('login', function(data){
-
-
 		return web_intf.dots.react_base({
 			pageData: {
 				validation_message : data.validation_message
 			},
 
 			metaData : {
-				main_title : data.settings.main_title
+				main_title : data.settings.main_title,
+				favicon_url			: data.settings.favicon_url || "",
+				main_title_suffix 	: data.settings.login_meta_title_suffix || "",
+				description			: data.settings.login_meta_description || "",
+				keywords			: data.settings.login_meta_keywords || "",
+				page_url			: "http://www.hognogi.com/contact",
+				image_url			: data.settings.login_image_url || ""
 			}
 		});
 	});
@@ -63,8 +76,31 @@ module.exports = function(CORE, interface_name){
 
 	web_intf.view('post', function(data){
 
+		var _settings = data.settings;
+
+
+
+
+
 		return web_intf.dots.react_base({
-			pageData : data
+			pageData : {
+				post: data.post,
+				media: data.media,
+				settings : {
+					tag_colors 	: _settings.tag_colors,
+					tag_prio 	: _settings.tag_prio 
+				}
+			},
+
+
+			metaData : {
+				description		: data.post.meta_description,
+				keywords		: data.post.meta_keywords,
+				page_url		: "http://www.hognogi.com/p/" + post.permalink,
+				favicon_url		: _settings.favicon_url || "",
+				main_title 		: data.post.headline
+			}
+
 		});
 	});
 

@@ -51,6 +51,13 @@ bl{{=it.fragments.header()}}
                                 <input type="text" autocomplete="off" class="tag-picker" placeholder="tags (CSV)" {{=(it.tags? 'data-tags="'+ it.tags.join(',') +'"':'')}} name="tags" value="{{=(it.post? it.post.tags : '')}}" />
 
 								<input type="hidden" name="media" value="{{=(it.post && it.post.media?  it.post.media.join(',') : '')}}">
+
+								<h3>Meta</h3>
+
+								<input type="text" name="meta_description" placeholder="Meta Description"  value="{{=(it.post? it.post.meta_description : '')}}"/>
+
+								<input type="text" name="meta_keywords" placeholder="Meta Keywords"  value="{{=(it.post? it.post.meta_keywords : '')}}"/>
+
                             </form>
 
 

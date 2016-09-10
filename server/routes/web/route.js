@@ -213,22 +213,6 @@ module.exports = [
 	},
 
 
-	{
-		access: {
-			sockets: ["ADMIN", "REGISTERED","PUBLIC"],
-			interfaces: ["web","admin"]
-		},
-		method: 'GET',
-		path: '/react/',
-		handler :  function (req, res) {
-			res.send(  req.interface.render('react_test') );
-		},
-		access_violation : function(req, res){
-			res.send( req.interface.to("default").render("403") );
-		}
-	},
-
-
 
 
 	{
@@ -315,12 +299,13 @@ module.exports = [
 						req.model.getSettings()
 					]).then(function(results){
 
-						
+						var _settings = results[1];
+						_settings.homepage_meta_title_suffix = req.params.tag;
 
 						res.send( req.interface.render('homepage', {
 							posts		: posts,
 							media		: results[0],
-							settings	: results[1],
+							settings	: _settings,
 							tags		: tags
 						}));
 					},function(err){

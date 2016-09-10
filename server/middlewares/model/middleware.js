@@ -29,7 +29,9 @@ module.exports = function(CORE){
 			created				: Date.now(),
 			media				: req.body.media ? req.body.media.split(',').map( function(id){ return ObjectID(id); } ) : [],
 			comments			: [],
-			status				: "draft"
+			status				: "draft",
+			meta_description 	: req.body.meta_description,
+			meta_keywords 		: req.body.meta_keywords
 		});
 	};
 
@@ -70,7 +72,9 @@ module.exports = function(CORE){
 			created				: Date.now(),
 			media				: req.body.media ? req.body.media.split(',').map( function(id){ return ObjectID(id); } ) : [],
 			comments			: [],
-			status				: "draft"
+			status				: "draft",
+			meta_description 	: req.body.meta_description || '',
+			meta_keywords 		: req.body.meta_keywords || ''
 		});
 	};
 
@@ -89,6 +93,7 @@ module.exports = function(CORE){
 
 			//meta settings
 			main_title					: req.body.main_title || '',
+			favicon_url					: req.body.favicon_url || '',
 
 			//homepage settings
 			//meta
@@ -101,7 +106,17 @@ module.exports = function(CORE){
 			homepage_subtext 			: req.body.homepage_subtext || '',
 
 			//contact settings
-			contact_meta_title_suffix	: req.body.contact_meta_title_suffix || ''
+			contact_meta_title_suffix	: req.body.contact_meta_title_suffix || '',
+			contact_meta_description	: req.body.contact_meta_description || '',
+			contact_meta_keywords		: req.body.contact_meta_keywords || '',
+			contact_image_url			: req.body.contact_image_url || '',
+
+
+			//login settings
+			login_meta_title_suffix		: req.body.login_meta_title_suffix || '',
+			login_meta_description		: req.body.login_meta_description || '',
+			login_meta_keywords			: req.body.login_meta_keywords || '',
+			login_image_url				: req.body.login_image_url || ''
 
 		}, {
 			upsert: true
