@@ -20,6 +20,11 @@
 
             <h3>Switch to the web interface to see the view rendered with React <a href="/?setinterface=web">by clicking here</a></h3>
 
+            You cand find/edit the admin interface at the folder: 
+            <pre>
+                /interfaces/admin
+            </pre>
+
 
             <h2>Here is some data from the repo located at server/repositories/database/repository.js:</h2>
 
