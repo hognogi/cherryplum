@@ -1,0 +1,33 @@
+<html>
+
+    <head>
+        <title>The admin Homepage</title>
+        
+		<link rel="stylesheet" type="text/css" href="/res/admin/main.css" />
+    </head>
+
+
+    <body>
+    
+
+        <div class="container">
+        
+
+            <h1>This is the "admin" page</h1>
+
+            This is rendered using the <a href="http://olado.github.io/doT/index.html">DoT.js</a> library.
+
+
+            <h3>Switch to the web interface to see the view rendered with React <a href="/?setinterface=web">by clicking here</a></h3>
+
+
+            <h2>Here is some data from the repo located at server/repositories/database/repository.js:</h2>
+
+            <pre>
+                {{=JSON.stringify(it.viewData, null, 4)  }}
+            </pre>
+   
+        </div>
+
+    </body>
+</html>

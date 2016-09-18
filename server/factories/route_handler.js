@@ -4,8 +4,8 @@ module.exports = function(CORE){
 	//factory for Interface
 	var _default_config = {
 		access : {
-			sockets: ["ADMIN"],
-			interfaces : ["default"]
+			sockets: ["ADMIN", "REGISTERED","PUBLIC"],
+			interfaces: ["web","admin"]
 		},
 		method: 'GET',
 		path: '/default_route',
@@ -13,7 +13,7 @@ module.exports = function(CORE){
 			res.send('<h3>This is the default route. This should have been handled. Some route does not have the "path" attribute set.</h3>' );
 		},
 		access_violation : function(req, res){
-			res.send( req.interface.to("default").render("403") );
+			res.send( "Access violation" );
 		}
 	}
 

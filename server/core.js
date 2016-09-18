@@ -145,7 +145,8 @@ module.exports = function(_config){
 
 		//404 override
 		_app.use(function(req, res){
-			res.send( req.interface.to("default").render("404" ) );
+			res.send('404');
+			//res.send( req.interface.to("default").render("404" ) );
 		});
 	};
 
@@ -156,7 +157,7 @@ module.exports = function(_config){
 
 		console.log("CLEANUP!");
 
-		CORE.repos.mongodb.cleanup();
+		//CORE.repos.mongodb.cleanup();
 
 	};
 

@@ -8,11 +8,11 @@ module.exports = function(CORE){
 		var _addView = function( view_name, handler ){
 
 			if( typeof view_name !== "string" ){
-				throw new Error( "The view could not be added. The view name must be a string! " );
+				console.error(Error( "The view could not be added. The view name must be a string! " ));
 			}
 
 			if( typeof handler !== "function" ){
-				throw new Error( "The handler for a view must be a function!" );
+				console.error(Error( "The handler for a view must be a function!" ));
 			}
 
 			_views[view_name] = {
@@ -26,11 +26,11 @@ module.exports = function(CORE){
 		var _renderView = function( view_name, data ){
 
 			if( typeof _views[view_name] !== "object" ) {
-				throw new Error("The view: '" + view_name + "' could not be rendered. The view is missing from the interface");
+				console.error(Error("The view: '" + view_name + "' could not be rendered. The view is missing from the interface"));
 			}
 
 			if( typeof _views[view_name].handler !== "function" ) {
-				throw new Error("The view: '" + view_name + "' does not have a defined handler.");
+				console.error(Error("The view: '" + view_name + "' does not have a defined handler."));
 			}
 
 			return _views[view_name].handler( data );
@@ -47,7 +47,7 @@ module.exports = function(CORE){
 					return requested_interface;
 				} else {
 
-					throw new Error("The requested interface: " + interface_name + " is not available");
+					console.error(Error("The requested interface: " + interface_name + " is not available"));
 					return CORE.interfaces[ CORE.config.default_interface ];
 				}
 			}

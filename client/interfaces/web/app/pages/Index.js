@@ -3,39 +3,15 @@ var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 
-/*Components*/
-var Header = require('../components/Header.js');
-var BlogRoll = require('../components/blog/BlogRoll.js');
-var Suggestions = require('../components/suggestions/Suggestions.js');
-var Footer = require('../components/Footer.js');
-
-/*constants*/
-var Actions = require('../constants/Actions.js');
 
 var Index = React.createClass({
 
-	childContextTypes : {
-    	media			: React.PropTypes.object,
-		tag_color_map	: React.PropTypes.object,
-		texts			: React.PropTypes.object
-    },
-
-	getChildContext : function(){
-		return this.childContext;
-	},
-
-
 	getInitialState : function(){
-		this.BlogStore = require('../stores/BlogStore.js')();
-		this.childContext = this.BlogStore.getHomeContext();
+
+		//pageData is a global variable defined in react_base.dot
 		return {
-			posts: this.BlogStore.getPosts(),
-			tags : this.BlogStore.getTags(),
-			blog_flags : {
-				action_completed : false
-			},
-			auth : this.BlogStore.getAuth()
-		}
+			data: JSON.stringify( pageData, null, 4 )
+		};
 	},
 
 	render: function() {
@@ -43,56 +19,28 @@ var Index = React.createClass({
 
 		return (
 			<Grid>
-				<Header auth={this.state.auth} />
 
-				<Row className="main-container">
-					<Col xs={12} >
-						<h1 className="main-title">{this.childContext.texts.home.tagline}</h1>
-						<h1 className="main-title-subtext">{this.childContext.texts.home.tagline_subtext}</h1>
-					</Col>
+				<div className="container">
+				
 
-					<Col xs={12} md={9} >
-						<BlogRoll flags={this.state.blog_flags} tags={this.state.tags} posts={this.state.posts} />
-					</Col>
+					<h1>This is the Web homepage</h1>
 
-					<Col xs={12} md={3} >
-						<Suggestions />
-					</Col>
+					This is rendered using React
 
-				</Row>
 
-				<Footer />
+					<h3>Switch to the admin interface to see the view rendered with Plain DoT.js <a href="/?setinterface=admin">by clicking here</a></h3>
+					<br /><br /><br /> <br /><br />
+
+					<h5>Here is some data from the repo located at <br /> <br />server/repositories/database/repository.js:</h5>
+
+					<pre>
+						{this.state.data}
+					</pre>
+		
+				</div>
 			</Grid>
 		);
 	},
-
-	componentDidMount: function() {
-		this.BlogStore.addActionCompletedListener(this._onActionCompleted);
-	},
-
-	componentWillUnmount: function() {
-		this.BlogStore.removeActionCompletedListener(this._onActionCompleted);
-	},
-
-	_onActionCompleted : function(action) {
-
-		switch ( action ) {
-			case Actions.BLOG.MORE_POSTS_REQUESTED :
-				this.setState({
-					posts: this.BlogStore.getPosts(),
-					tags : this.state.tags,
-					blog_flags : {
-						action_completed : Actions.BLOG.MORE_POSTS_REQUESTED
-					},
-					auth: this.BlogStore.getAuth()
-				})
-			break;
-
-			default:
-				//no op
-		}
-
-	}
 
 });
 module.exports = Index;
