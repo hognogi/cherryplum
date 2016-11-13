@@ -18,6 +18,10 @@ module.exports = function(_config){
 
 		for( i = 0; i < helper_files.length; i++ ){
 
+			if( !(/\.js$/i).test(helper_files[i]) ) { //the current file is not a js file
+				continue;
+			}
+
 			//initialize helper
 			helper_instance = require(  _config.root_path_relative_to_core + _config.directories.helpers + "/" + helper_files[i]  )(_config);
 
@@ -38,6 +42,10 @@ module.exports = function(_config){
 			factory_function, i, factory_name;
 
 		for( i = 0; i < factories_files.length; i++ ){
+
+			if( !(/\.js$/i).test(factories_files[i]) ) { //the current file is not a js file
+				continue;
+			}
 
 			//initialize factory function
 			factory_function = require(  _config.root_path_relative_to_core +  _config.directories.factories + "/" + factories_files[i] )(CORE);
@@ -168,6 +176,8 @@ module.exports = function(_config){
 	CORE.interfaces		= _getInterfaces();
 	CORE.repos 			= _getRepositories();
 	CORE.middlewares	= _getMiddlewares();
+
+	console.log(CORE);
 
 	return CORE;
 };
