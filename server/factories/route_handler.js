@@ -15,17 +15,17 @@ module.exports = function(CORE){
 		access_violation : function(req, res){
 			res.send( "Access violation" );
 		}
-	}
+	};
 
 
-	var _proto_handler = function(req, res, next){
+	function _proto_handler(req, res, next){
 
 		if( req.auth.checkKeys(this.access.sockets) && req.interface.checkAccess( this.access.interfaces ) ){
 			this.handler( req, res, next );
 		} else {
 			this.access_violation(req, res, next);
 		}
-	}
+	};
 
 
 

@@ -8,12 +8,20 @@ module.exports = function(CORE){
 		return repo.getDataFromTheDatabase();
 	}
 
-	return function (req, res, next) {
 
-		req.model = {
+	/**
+	 *  assembling the object to be exported
+	 */
+	var middlewareDecoratorObject = {
 			getData : getDataFromRepository
-		}
+	};
 
+
+	/**
+	 * export middleware
+	 */
+	return function (req, res, next) {
+		req.model = middlewareDecoratorObject;
 		next();
 	};
 };

@@ -1,14 +1,14 @@
 //UTILS HELPER
 module.exports = function(_config){
 
-	var _splitAndTrim = function(input, separator){
+	function _splitAndTrim(input, separator){
 
 		return input.split(separator).map(function(item){
 			return item.trim();
 		});
 	};
 
-	var _removeEmptyStringsArray = function(arr){
+	function _removeEmptyStringsArray(arr){
 
 		return arr.reduce( function(acc, crt){
 			crt !== "" && acc.push(crt);
@@ -16,7 +16,7 @@ module.exports = function(_config){
 		}, [] );
 	};
 
-	var _flatArray = function(arrays){
+	function _flatArray(arrays){
 
 		return arrays.reduce(function(acc, crt){
 
@@ -29,7 +29,7 @@ module.exports = function(_config){
 		},[])
 	};
 
-	var _rmDuplicates = function(array){
+	function _rmDuplicates(array){
 
 		return array.reduce( function(acc, crt){
 			if (acc.indexOf(crt) == -1){

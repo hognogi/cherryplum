@@ -122,7 +122,7 @@ module.exports = function(_config){
 		for( i = 0; i < route_directories.length; i++ ){
 
 			var _crt_dir = route_directories[i];
-			var routes_arr = require( _config.root_path_relative_to_core +  _config.directories.routes + "/"  + _crt_dir  + "/route.js" );
+			var routes_arr = require( _config.root_path_relative_to_core +  _config.directories.routes + "/"  + _crt_dir  + "/route.js" )(CORE);
 
 
 			for( j = 0; j < routes_arr.length; j++ ){

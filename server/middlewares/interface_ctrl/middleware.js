@@ -2,7 +2,7 @@
 module.exports = function(CORE){
 
 	//TODO: find a way not to execute this function on EACH request
-	var _extendInterfaceObject = function(int_obj, interface_name){
+	function _extendInterfaceObject(int_obj, interface_name){
 
 		int_obj.is = function(name){
 			return this.__interface_name === name;
@@ -23,7 +23,7 @@ module.exports = function(CORE){
 
 	//TODO: Optimize this function such that it's not called every request
 
-	var _getInterface = function(req, res){
+	function _getInterface(req, res){
 
 		//CASE 1: the interface needs to be saved in the cookies
 		var interface_name = req.query.setinterface;
@@ -48,7 +48,7 @@ module.exports = function(CORE){
 
 		//CASE 4: both the request variable and the cookie interface are wrong or nonexistent: show default interface
 		return _extendInterfaceObject( CORE.interfaces[ CORE.config.default_interface ], interface_name );
-	}
+	};
 
 
 

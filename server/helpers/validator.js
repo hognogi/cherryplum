@@ -1,7 +1,7 @@
 //PATH HELPER
 module.exports = function(_config){
 
-	var _validateCommentSubmit = function(commentComponents){
+	function _validateCommentSubmit(commentComponents){
 		var errs = [];
 
 		if(typeof commentComponents.post_id !== "string"){
@@ -28,7 +28,7 @@ module.exports = function(_config){
 	};
 
 
-	var _validateMessageSubmit = function(messageComponents){
+	function _validateMessageSubmit(messageComponents){
 		var errs = [];
 
 

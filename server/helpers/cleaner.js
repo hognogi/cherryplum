@@ -6,7 +6,7 @@ var sanitizeHtml = require('sanitize-html');
 
 module.exports = function(_config){
 
-	var _cleanCommentSubmit = function(commentComponents){
+	function _cleanCommentSubmit(commentComponents){
 
 		return {
 			post_id  	: commentComponents.post_id,
@@ -18,16 +18,16 @@ module.exports = function(_config){
 	};
 
 
-	var _cleanMessageSubmit = function(messageCompoenents) {
+	function _cleanMessageSubmit(messageCompoenents) {
 		return {
 			name	 	: sanitizeHtml(messageCompoenents.name),
 			body	 	: sanitizeHtml(messageCompoenents.body),
 			email	 	: sanitizeHtml(messageCompoenents.email),
 			timestamp	: messageCompoenents.timestamp
 		};
-	}
+	};
 
-	var _cleanString  = function(string) {
+	function _cleanString(string) {
 		return sanitizeHtml( string );
 	};
 

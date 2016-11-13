@@ -1,5 +1,6 @@
 var Promise = require('bluebird');
 var jwt = require('jwt-simple');
+var extend = require('extend');
 
 
 module.exports = function(CORE){
@@ -7,9 +8,7 @@ module.exports = function(CORE){
 
 	var repo = CORE.repos.mongodb;
 
-	//todo: LOGIN, logout,
-
-	var _validateLogin =  function (email, password){
+	function _validateLogin(email, password){
 		return new Promise(function(resolve, reject){
 			
 			repo.find('users', {email: email, password: password})
@@ -30,15 +29,14 @@ module.exports = function(CORE){
 		});
 	};
 
-	var _getDefaultLoginJWT = function(user){
+	function _getDefaultLoginJWT(user){
 		return jwt.encode({
 			email	: user.email,
 			keys	: user.access_keys
 		},  CORE.config.secrets.jwt );
 	};
 
-	var _checkKeys = function(sockets){
-
+	function _checkKeys(sockets){
 
 		return (sockets.indexOf("PUBLIC") != -1) ||
 			( this.token &&
@@ -47,15 +45,24 @@ module.exports = function(CORE){
 			},false));
 	};
 
-	return function (req, res, next) {
 
-	   req.auth = {
-		   token 				: req.cookies.jwt ? jwt.decode(req.cookies.jwt, CORE.config.secrets.jwt) : false,
+	/**
+	 *  assembling the object to be exported
+	 */
+
+	var middlewareDecoratorObject = {
 		   validateLogin 		: _validateLogin,
 		   getDefaultLoginJWT 	: _getDefaultLoginJWT,
 		   checkKeys 			: _checkKeys
-	   };
+	};
 
+	/**
+	 * export middleware
+	 */
+	return function (req, res, next) {
+	   req.auth =  extend({
+		   token : req.cookies.jwt ? jwt.decode(req.cookies.jwt, CORE.config.secrets.jwt) : false
+	   }, middlewareDecoratorObject);
 	   next();
    };
 

@@ -5,7 +5,7 @@ module.exports = function(CORE){
 
 		var _views = {};
 
-		var _addView = function( view_name, handler ){
+		function _addView( view_name, handler ){
 
 			if( typeof view_name !== "string" ){
 				console.error(Error( "The view could not be added. The view name must be a string! " ));
@@ -23,7 +23,7 @@ module.exports = function(CORE){
 
 
 
-		var _renderView = function( view_name, data ){
+		function _renderView( view_name, data ){
 
 			if( typeof _views[view_name] !== "object" ) {
 				console.error(Error("The view: '" + view_name + "' could not be rendered. The view is missing from the interface"));
@@ -36,7 +36,7 @@ module.exports = function(CORE){
 			return _views[view_name].handler( data );
 		};
 
-		var _to = function(interface_name){
+		function _to(interface_name){
 
 			if(interface_name == "default"){
 				return CORE.interfaces[ CORE.config.default_interface ];
