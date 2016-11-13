@@ -176,8 +176,6 @@ module.exports = function(_config){
 	CORE.interfaces		= _getInterfaces();
 	CORE.repos 			= _getRepositories();
 	CORE.middlewares	= _getMiddlewares();
-
-	console.log(CORE);
-
+	
 	return CORE;
 };
