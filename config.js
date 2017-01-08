@@ -1,8 +1,9 @@
 module.exports = {
 	port: process.env.CHERRYPLUM_NODEJS_PORT,
 	ipaddress : process.env.CHERRYPLUM_NODEJS_IP,
+	env : process.env.CHERRYPLUM_ENV || 'development',
 
-	base_url : "http://www.hognogi.com/",
+	base_url : "/",
 
 	default_interface : "web",
 
@@ -28,5 +29,10 @@ module.exports = {
 
 	secrets : {
 		jwt : process.env.CHERRYPLUM_BLOG_JWT_SECRET || "Custom string used for encoding the JWT tokens"
-	}
+	},
+
+	//
+	apply_webpack_compilers : true,
+	webpack_config_dev_js : require('./webpack.config.dev.js'),
+	webpack_config_prod_js : require('./webpack.config.prod.js')
 };

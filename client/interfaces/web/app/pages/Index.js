@@ -1,24 +1,18 @@
 /*Bootstrap Classes*/
-var Grid = ReactBootstrap.Grid;
-var Row = ReactBootstrap.Row;
-var Col = ReactBootstrap.Col;
+import { Grid } from 'react-bootstrap';
 
+import React, { Component, PropTypes } from 'react';
 
-var Index = React.createClass({
+import { connect } from 'react-redux';
 
-	getInitialState : function(){
+import './Index.scss';
 
-		//pageData is a global variable defined in react_base.dot
-		return {
-			data: JSON.stringify( pageData, null, 4 )
-		};
-	},
+class Index extends Component {
 
-	render: function() {
+	render() {
 
-
-		return (
-			<Grid>
+		return(
+			<Grid> 
 
 				<div className="container">
 				
@@ -57,7 +51,9 @@ var Index = React.createClass({
 				</div>
 			</Grid>
 		);
-	},
+	}
 
-});
-module.exports = Index;
+};
+
+
+export default Index;

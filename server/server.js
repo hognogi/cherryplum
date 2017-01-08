@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 var multer  = require('multer');
 
 
+var webpack = require('webpack');
+
 
 //the value of "module.exports" is returned by the require function
 module.exports = function(config){
@@ -79,6 +81,29 @@ module.exports = function(config){
 		_ctrl.app.use(CORE.middlewares.auth);
 		_ctrl.app.use(CORE.middlewares.interface_ctrl);
 
+
+		/**
+		 * WEBPACK SETUP FOR REACT INTERFACES. REMOVE THIS IF NOT USING REACT AT ALL 
+		 */
+
+		if ( CORE.config.apply_webpack_compilers ) {
+
+			var webpack_config = CORE.config.env == 'development' ? 
+									CORE.config.webpack_config_dev_js : 
+									CORE.config.webpack_config_prod_js;
+
+
+			console.log('is dev env:', CORE.config.env == 'development' );
+
+			var compiler = webpack(webpack_config);
+
+			_ctrl.app.use(require('webpack-dev-middleware')(compiler, {
+				noInfo: true,
+				publicPath: webpack_config.output.publicPath
+			}));
+
+			//_ctrl.app.use(require('webpack-hot-middleware')(compiler));
+		}
 
 
 		//init static files

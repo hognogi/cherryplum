@@ -5,7 +5,7 @@ var extend = require('extend');
 
 module.exports = function(CORE){
 
-
+	//TODO: configure login repo
 	var repo = CORE.repos.mongodb;
 
 	function _validateLogin(email, password){
